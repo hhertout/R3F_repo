@@ -1,12 +1,16 @@
-import type { Metadata } from 'next'
-import { ReactNode, StrictMode } from 'react'
+import type { Metadata } from 'next';
+import { PropsWithChildren, StrictMode } from 'react';
 
 export const metadata: Metadata = {
   title: '3D experience',
   description: 'React three fiber experience',
-}
+};
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: PropsWithChildren;
+}) {
   return (
     <html lang="fr">
       <body>
@@ -15,5 +19,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
       </body>
     </html>
-  )
+  );
 }

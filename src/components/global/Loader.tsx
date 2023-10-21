@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Html, useProgress } from '@react-three/drei';
 
 const Loader = (): JSX.Element => {
-  return <div>Loading...</div>
-}
+  const { progress } = useProgress();
+  return (
+    <>
+      <color attach={'background'} args={[0, 0, 0]} />
+      <Html center>Chargement : {progress} %</Html>
+    </>
+  );
+};
 
-export default Loader
+export default Loader;
