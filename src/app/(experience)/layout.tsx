@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ReactNode } from 'react'
-
-const inter = Inter({ subsets: ['latin'] })
+import { ReactNode, StrictMode } from 'react'
 
 export const metadata: Metadata = {
   title: '3D experience',
@@ -13,7 +9,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <div id="canvas-container" style={{ height: '100vh', width: '100vw' }}>
+          <StrictMode>{children}</StrictMode>
+        </div>
+      </body>
     </html>
   )
 }
