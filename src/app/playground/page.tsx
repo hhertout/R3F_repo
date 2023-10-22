@@ -8,7 +8,7 @@ import { OrbitControls } from '@react-three/drei';
 const Page = () => {
   return (
     <body>
-      <div id="canvas-container" style={{ height: '100vh', width: '100vw' }}>
+      <div id="canvas-container">
         <Canvas>
           <StrictMode>
             <color attach={'background'} args={[0, 0, 0]} />

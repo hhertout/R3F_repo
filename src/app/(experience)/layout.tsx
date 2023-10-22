@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
       <body>
-        <div id="canvas-container" style={{ height: '100vh', width: '100vw' }}>
+        <div id="canvas-container">
           <StrictMode>{children}</StrictMode>
         </div>
       </body>
