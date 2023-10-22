@@ -2,8 +2,8 @@
 
 import React, { StrictMode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import ShootingStars from '@components/experience/ShootingStars';
-import { OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
+import OrganicSphere from '@components/experience/OrganicSphere';
 
 const Page = () => {
   return (
@@ -13,7 +13,12 @@ const Page = () => {
           <StrictMode>
             <color attach={'background'} args={[0, 0, 0]} />
             <ambientLight />
-            <ShootingStars size={5} />
+            <OrganicSphere radius={2} depth={120} />
+            <Html center>
+              <h1 style={{ color: 'white', width: '100%' }}>
+                Hello&#160;world
+              </h1>
+            </Html>
             <OrbitControls />
           </StrictMode>
         </Canvas>
