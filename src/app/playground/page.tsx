@@ -13,10 +13,10 @@ const Page = () => {
           <StrictMode>
             <color attach={'background'} args={[0, 0, 0]} />
             <ambientLight />
-            <OrganicSphere radius={2} depth={120} />
+            <OrganicSphere radius={2} depth={120} position={[-3, 0.2, 0]} />
             <Html center>
               <h1 style={{ color: 'white', width: '100%' }}>
-                Hello&#160;world
+                Organic&#160;Sphere
               </h1>
             </Html>
             <OrbitControls />

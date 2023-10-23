@@ -8,14 +8,15 @@ import fragmentShaders from '@shaders/OrganicSphere/fragmentShaders';
 type OrganicSphereProps = {
   radius: number;
   depth: number;
+  position: [number, number, number];
 };
 
-const OrganicSphere = ({ radius, depth }: OrganicSphereProps) => {
+const OrganicSphere = ({ radius, depth, position }: OrganicSphereProps) => {
   const OrganicSphereRef = useRef<Mesh>(null);
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uTimeReducer: { value: 0.1 },
+      uTimeReducer: { value: 0.15 },
       uNoiseDensity: { value: 3.0 },
       uNoiseStrength: { value: 0.2 },
       uFrequency: { value: 3 },
@@ -34,7 +35,7 @@ const OrganicSphere = ({ radius, depth }: OrganicSphereProps) => {
   });
 
   return (
-    <mesh ref={OrganicSphereRef}>
+    <mesh ref={OrganicSphereRef} position={position}>
       <sphereGeometry args={[radius, depth, depth]} />
       <shaderMaterial
         depthWrite={false}
