@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import vertexShaders from '@shaders/vertexShaders';
-import fragmentShaders from '@shaders/fragmentShaders';
+import vertexShaders from '@shaders/SphereParticles/vertexShaders';
+import fragmentShaders from '@shaders/SphereParticles/fragmentShaders';
 import * as THREE from 'three';
 import { Points } from 'three';
 
@@ -16,12 +16,12 @@ const SphereParticles = ({ count, radius }: SphereParticlesProps) => {
   const particlesPosition: Float32Array = useMemo(() => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const distance = Math.sqrt(Math.random()) * radius;
-      const theta = THREE.MathUtils.randFloatSpread(360);
-      const phi = THREE.MathUtils.randFloatSpread(360);
-      let x = distance * Math.sin(theta) * Math.cos(phi);
-      let y = distance * Math.sin(theta) * Math.sin(phi);
-      let z = distance * Math.cos(theta);
+      const distance: number = Math.sqrt(Math.random()) * radius;
+      const theta: number = THREE.MathUtils.randFloatSpread(360);
+      const phi: number = THREE.MathUtils.randFloatSpread(360);
+      let x: number = distance * Math.sin(theta) * Math.cos(phi);
+      let y: number = distance * Math.sin(theta) * Math.sin(phi);
+      let z: number = distance * Math.cos(theta);
       positions.set([x, y, z], i * 3);
     }
     return positions;
@@ -40,10 +40,8 @@ const SphereParticles = ({ count, radius }: SphereParticlesProps) => {
   );
 
   useFrame(({ clock }): void => {
-    if (points.current && points.current.material) {
-      const material = points.current.material as THREE.ShaderMaterial;
-      material.uniforms.uTime.value = clock.elapsedTime;
-    }
+    const material = points?.current?.material as THREE.ShaderMaterial;
+    material.uniforms.uTime.value = clock.elapsedTime;
   });
   return (
     <points ref={points}>
@@ -56,6 +54,7 @@ const SphereParticles = ({ count, radius }: SphereParticlesProps) => {
         />
       </bufferGeometry>
       <shaderMaterial
+        blending={THREE.AdditiveBlending}
         depthWrite={false}
         fragmentShader={fragmentShaders}
         vertexShader={vertexShaders}
