@@ -23,7 +23,7 @@ const OrganicSphere = ({ radius, depth, position }: OrganicSphereProps) => {
       uAmplitude: { value: 3.0 },
       uColorOffset: { value: 0.1 },
       uColorMultiplier: { value: 20.0 },
-      uSurfaceColor: { value: new THREE.Color('#d71d43') },
+      uSurfaceColor: { value: new THREE.Color('#1bfaff') },
     }),
     []
   );
