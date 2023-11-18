@@ -1,26 +1,25 @@
 'use client';
-
 import React, { StrictMode } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Html, OrbitControls } from '@react-three/drei';
-import OrganicSphere from '@components/experience/OrganicSphere';
-import { useControls } from 'leva';
-import './playground.css';
+import { Canvas, useThree } from '@react-three/fiber';
+import { OrbitControls, StatsGl } from '@react-three/drei';
+import Terrain from '@components/Terrain';
+import Road from '@components/Road';
+import Car from '@components/Car';
 
 const Page = () => {
-  const { position } = useControls({ position: [-3, 0.2, 0] });
   return (
     <body>
       <div id="canvas-container">
-        <Canvas gl={{ alpha: true }}>
+        <Canvas
+          camera={{ position: [0, 3, 10], fov: 75 }}
+          gl={{ alpha: true, antialias: true }}
+        >
+          <StatsGl />
           <StrictMode>
             <ambientLight />
-            <OrganicSphere radius={2} depth={120} position={position} />
-            <Html center>
-              <h1 style={{ color: 'white', width: '100%' }}>
-                Organic&#160;Sphere
-              </h1>
-            </Html>
+            <Terrain position={[0, 0, 3]} size={[23, 10]} />
+            <Road position={[0, 0, 3]} size={[1, 10]} />
+            <Car position={[0, 0, 7]} />
             <OrbitControls />
           </StrictMode>
         </Canvas>
