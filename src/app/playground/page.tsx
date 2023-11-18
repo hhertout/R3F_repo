@@ -1,6 +1,6 @@
 'use client';
 import React, { StrictMode } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, StatsGl } from '@react-three/drei';
 import Terrain from '@components/Terrain';
 import Road from '@components/Road';

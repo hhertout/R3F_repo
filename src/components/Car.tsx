@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-
 type Props = {
   position: [number, number, number];
 };
