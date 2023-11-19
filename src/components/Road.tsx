@@ -13,9 +13,19 @@ const Road = ({ size, position }: Props) => {
   map.wrapS = map.wrapT = RepeatWrapping;
   map.repeat.set(4, 15);
   return (
-    <mesh ref={RoadRef} position={position} rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh
+      ref={RoadRef}
+      position={position}
+      rotation={[-Math.PI / 2, 0, 0]}
+      receiveShadow={true}
+    >
       <planeGeometry args={size} />
-      <meshStandardMaterial map={map} displacementScale={0.2} roughness={0.2} />
+      <meshStandardMaterial
+        color={'black'}
+        displacementScale={0.2}
+        roughness={1}
+        metalness={0.2}
+      />
     </mesh>
   );
 };

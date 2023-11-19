@@ -11,19 +11,17 @@ type Props = {
 };
 
 const Terrain = ({ position, size }: Props) => {
-  const { barSize } = useControls({ barSize: 0.95 });
-  const { speed } = useControls({ speed: 2.5 });
   const planeRef = useRef<THREE.Mesh>(null);
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
       uSize: { value: new THREE.Vector2(...size) },
-      uBarSize: { value: barSize },
-      uColor: { value: new THREE.Color('#FF00FF') },
-      uSpeed: { value: speed },
+      uBarSize: { value: 0.98 },
+      uColor: { value: new THREE.Color('#FF00FE') },
+      uSpeed: { value: 2 },
     }),
-    [size, barSize, speed]
+    [size]
   );
 
   useFrame(({ clock }) => {
@@ -33,13 +31,12 @@ const Terrain = ({ position, size }: Props) => {
 
   return (
     <mesh ref={planeRef} position={position} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={size} />
+      <planeGeometry args={[...size, 400, 400]} />
       <shaderMaterial
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
         uniforms={uniforms}
         fragmentShader={fragmentShaders}
         vertexShader={vertexShaders}
+        clipping={true}
       />
     </mesh>
   );
