@@ -1,7 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import fragmentShaders from '@shaders/Terrain/fragmentShaders';
 import vertexShaders from '@shaders/Terrain/vertexShaders';
-import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -31,7 +30,7 @@ const Terrain = ({ position, size }: Props) => {
 
   return (
     <mesh ref={planeRef} position={position} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[...size, 400, 400]} />
+      <planeGeometry args={[...size, 80, 80]} />
       <shaderMaterial
         uniforms={uniforms}
         fragmentShader={fragmentShaders}

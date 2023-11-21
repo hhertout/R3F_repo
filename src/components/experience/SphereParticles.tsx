@@ -43,6 +43,7 @@ const SphereParticles = ({ count, radius }: SphereParticlesProps) => {
     const material = points?.current?.material as THREE.ShaderMaterial;
     material.uniforms.uTime.value = clock.elapsedTime;
   });
+
   return (
     <points ref={points}>
       <bufferGeometry>

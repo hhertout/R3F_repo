@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Mesh } from 'three';
 import { Vector3 } from '@react-three/fiber';
 
 type Props = {
@@ -15,7 +14,6 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
     for (let i = 0; i < size; i++) {
       const randomHeight: number = Math.random() * maxHeight + 2;
       let posX = Math.random() * width * 2 - width;
-      //if (posX >= -2 && posX <= 2) posX = posX + 12;
       const randomPosition: Vector3 = [
         posX,
         randomHeight - randomHeight / 2 - 1,
