@@ -11,7 +11,7 @@ float bellCurveHeight(float x) {
 }
 
 void main() {
-    float posZ = position.z + bellCurveHeight(position.x * 0.05) - 1.0;
+    float posZ = position.z + bellCurveHeight(position.x * 0.06) - 1.0;
     vec4 modelPosition = modelViewMatrix * vec4(position.x, position.y, posZ, 1.0);
 
     gl_Position = projectionMatrix * modelPosition;
