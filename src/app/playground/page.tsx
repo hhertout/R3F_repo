@@ -40,7 +40,7 @@ const Page = () => {
               <Terrain position={[0, 0, 0]} size={[160, terrainDepth]} />
               <Road position={[-0.05, 0.02, 0]} size={[1.9, terrainDepth]} />
               <Car position={[0.5, 0, 12]} />
-              <Sun position={[0, 13, -40]} size={[15, 80]} />
+              <Sun position={[0, 5, -40]} size={[22, 80]} />
 
               <Buildings size={180} maxHeight={2} width={80} z={-18} />
               <Buildings size={150} maxHeight={4} width={80} z={-22} />

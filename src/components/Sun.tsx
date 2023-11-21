@@ -14,7 +14,7 @@ const Sun = ({ position, size }: Props) => {
   const uniforms = {
     uSize: { value: size[0] },
     uTime: { value: 0 },
-    uColor: { value: new THREE.Color('#F6BA3E') },
+    uColor: { value: new THREE.Color('#ffba3e') },
   };
 
   useFrame(({ clock }) => {
