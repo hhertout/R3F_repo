@@ -1,7 +1,7 @@
 'use client';
 import React, { StrictMode, Suspense } from 'react';
 import { Canvas, Vector3 } from '@react-three/fiber';
-import { OrbitControls, StatsGl } from '@react-three/drei';
+import { Html, OrbitControls, StatsGl } from '@react-three/drei';
 import Terrain from '@components/Terrain';
 import Road from '@components/Road';
 import Car from '@components/Car';
@@ -24,18 +24,14 @@ const Page = () => {
         >
           <StatsGl />
           <StrictMode>
-            <Suspense fallback={'loading'}>
-              <ambientLight intensity={0.2} />
-              <pointLight
-                color={'#FF00FE'}
-                position={[-30, 0, 10]}
-                intensity={600}
-              />
-              <pointLight
-                color={'#FF00FE'}
-                position={[30, 0, 10]}
-                intensity={600}
-              />
+            <Suspense
+              fallback={
+                <Html color={'white'} scale={10}>
+                  Loading
+                </Html>
+              }
+            >
+              <ambientLight intensity={0.4} />
 
               <Terrain position={[0, 0, 0]} size={[160, terrainDepth]} />
               <Road position={[-0.05, 0.02, 0]} size={[1.9, terrainDepth]} />

@@ -14,7 +14,7 @@ const Sun = ({ position, size }: Props) => {
   const uniforms = {
     uSize: { value: size[0] },
     uTime: { value: 0 },
-    uColor: { value: new THREE.Color('#ffba3e') },
+    uColor: { value: new THREE.Color('#F6BA3E') },
   };
 
   useFrame(({ clock }) => {
@@ -24,8 +24,8 @@ const Sun = ({ position, size }: Props) => {
   return (
     <>
       <pointLight
-        color={'#F6BA3E'}
-        position={[0, 4, -25]}
+        color={'#ff7300'}
+        position={[0, 4, -30]}
         intensity={1000}
         castShadow
       />

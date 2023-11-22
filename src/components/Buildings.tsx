@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Buildings = ({ z, size, maxHeight, width }: Props) => {
-  const buildings = useMemo(() => {
+  const elements = useMemo(() => {
     const buildingArray: Array<{ element: any }> = [];
     for (let i = 0; i < size; i++) {
       const randomHeight: number = Math.random() * maxHeight + 2;
@@ -28,9 +28,9 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
         ),
       });
     }
-    return buildingArray;
+    return { buildings: buildingArray };
   }, [z, size, maxHeight, width]);
-  return <>{buildings.map((b: any) => b.element)}</>;
+  return <>{elements.buildings.map((b) => b.element)}</>;
 };
 
 export default Buildings;
