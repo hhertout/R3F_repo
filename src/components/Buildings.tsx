@@ -21,8 +21,8 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
       ];
       buildingArray.push({
         element: (
-          <mesh position={randomPosition} key={i} receiveShadow>
-            <boxGeometry args={[1.4, randomHeight]} />
+          <mesh position={randomPosition} key={i}>
+            <boxGeometry args={[1.8, randomHeight]} />
             <meshStandardMaterial color={'black'} />
           </mesh>
         ),
@@ -30,6 +30,7 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
     }
     return { buildings: buildingArray };
   }, [z, size, maxHeight, width]);
+
   return <>{elements.buildings.map((b) => b.element)}</>;
 };
 

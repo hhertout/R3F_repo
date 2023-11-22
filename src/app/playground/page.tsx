@@ -1,5 +1,5 @@
 'use client';
-import React, { StrictMode, Suspense } from 'react';
+import React, { StrictMode, Suspense, useState } from 'react';
 import { Canvas, Vector3 } from '@react-three/fiber';
 import { Html, OrbitControls, StatsGl } from '@react-three/drei';
 import Terrain from '@components/Terrain';
@@ -9,10 +9,12 @@ import Sun from '@components/Sun';
 import Buildings from '@components/Buildings';
 import './playground.css';
 import ShootingStars from '@components/ShootingStars';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
+
+const terrainDepth = 60;
 
 const Page = () => {
-  const terrainDepth = 60;
-  const cameraPosition: Vector3 = [0, 2, 15];
+  const [cameraPosition, setCameraPosition] = useState<Vector3>([0, 2, 15]);
 
   return (
     <body>
@@ -38,9 +40,9 @@ const Page = () => {
               <Car position={[0.5, 0, 12]} />
               <Sun position={[0, 5, -40]} size={[22, 80]} />
 
-              <Buildings size={180} maxHeight={2} width={80} z={-18} />
-              <Buildings size={150} maxHeight={4} width={80} z={-22} />
-              <Buildings size={140} maxHeight={7} width={80} z={-26} />
+              <Buildings size={100} maxHeight={2} width={70} z={-18} />
+              <Buildings size={100} maxHeight={4} width={70} z={-22} />
+              <Buildings size={120} maxHeight={7} width={70} z={-26} />
               <ShootingStars
                 count={200}
                 size={[340, 60, 10]}
@@ -56,6 +58,10 @@ const Page = () => {
                 color={'#FF00FE'}
               />
             </Suspense>
+
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.4} intensity={1.4} mipmapBlur />
+            </EffectComposer>
             <OrbitControls />
           </StrictMode>
         </Canvas>

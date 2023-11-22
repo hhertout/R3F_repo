@@ -27,7 +27,7 @@ const ShootingStars = ({
       const x = Math.random() * size[0];
       let y = Math.random() * size[1];
       const z = Math.random() * size[2];
-      if (x >= size[0] / 2 - 20 && x <= size[0] / 2 + 20) y += 40;
+      if (x >= size[0] / 2 - 22 && x <= size[0] / 2 + 22) y += 40;
       position.set([x, y, z], i * 3);
     }
     return position;

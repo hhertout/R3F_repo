@@ -26,7 +26,7 @@ const Sun = ({ position, size }: Props) => {
       <pointLight
         color={'#ff7300'}
         position={[0, 4, -30]}
-        intensity={1000}
+        intensity={500}
         castShadow
       />
       <mesh position={position} ref={sunRef}>

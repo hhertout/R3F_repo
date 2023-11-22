@@ -30,12 +30,11 @@ const Terrain = ({ position, size }: Props) => {
 
   return (
     <mesh ref={planeRef} position={position} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[...size, 80, 80]} />
+      <planeGeometry args={[...size, 70, 70]} />
       <shaderMaterial
         uniforms={uniforms}
         fragmentShader={fragmentShaders}
         vertexShader={vertexShaders}
-        clipping={true}
       />
     </mesh>
   );
