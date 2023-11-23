@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Vector3 } from '@react-three/fiber';
+import * as THREE from 'three';
 
 type Props = {
   size: number;
@@ -7,6 +8,8 @@ type Props = {
   z: number;
   width: number;
 };
+
+const material = new THREE.MeshStandardMaterial({ color: 'black' });
 
 const Buildings = ({ z, size, maxHeight, width }: Props) => {
   const elements = useMemo(() => {
@@ -21,9 +24,8 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
       ];
       buildingArray.push({
         element: (
-          <mesh position={randomPosition} key={i}>
+          <mesh position={randomPosition} key={i} material={material}>
             <boxGeometry args={[1.8, randomHeight]} />
-            <meshStandardMaterial color={'black'} />
           </mesh>
         ),
       });
