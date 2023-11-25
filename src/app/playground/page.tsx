@@ -40,9 +40,8 @@ const Page = () => {
               <Car position={[0.5, 0, 12]} />
               <Sun position={[0, 5, -40]} size={[22, 80]} />
 
-              <Buildings size={100} maxHeight={2} width={70} z={-18} />
-              <Buildings size={100} maxHeight={4} width={70} z={-22} />
-              <Buildings size={120} maxHeight={7} width={70} z={-26} />
+              <Buildings size={250} maxHeight={2} width={80} z={-26} />
+              <Buildings size={120} maxHeight={6} width={80} z={-30} />
               <ShootingStars
                 count={200}
                 size={[340, 60, 10]}
@@ -50,17 +49,10 @@ const Page = () => {
                 cameraPosition={cameraPosition}
                 color={'#F6BA3E'}
               />
-              <ShootingStars
-                count={10}
-                size={[340, 60, 10]}
-                position={[-170, 10, -80]}
-                cameraPosition={cameraPosition}
-                color={'#FF00FE'}
-              />
             </Suspense>
 
             <EffectComposer>
-              <Bloom luminanceThreshold={0.4} intensity={1.4} mipmapBlur />
+              <Bloom luminanceThreshold={0.3} intensity={0.9} mipmapBlur />
             </EffectComposer>
             <OrbitControls />
           </StrictMode>

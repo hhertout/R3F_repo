@@ -25,7 +25,7 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
       buildingArray.push({
         element: (
           <mesh position={randomPosition} key={i} material={material}>
-            <boxGeometry args={[1.8, randomHeight]} />
+            <boxGeometry args={[1.4, randomHeight]} />
           </mesh>
         ),
       });

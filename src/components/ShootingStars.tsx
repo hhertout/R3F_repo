@@ -59,6 +59,7 @@ const ShootingStars = ({
       <shaderMaterial
         depthWrite={false}
         uniforms={uniforms}
+        blending={THREE.AdditiveBlending}
         fragmentShader={fragmentShaders}
         vertexShader={vertexShaders}
       />
