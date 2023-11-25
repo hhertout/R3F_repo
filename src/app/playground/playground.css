@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
   background: #ff00fe;
   background: linear-gradient(
@@ -26,4 +30,20 @@ body {
 h1 {
   font-family: 'Yeseva One', serif;
   font-size: clamp(1rem, 7vw, 7rem);
+}
+
+.btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  margin: 16px;
+}
+
+.btn-reset {
+  position: absolute;
+  bottom: 0;
+  left: 120px;
+  padding: 20px;
+  margin: 16px;
 }
