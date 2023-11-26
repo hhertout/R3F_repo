@@ -33,17 +33,19 @@ h1 {
 }
 
 .btn {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 20px;
-  margin: 16px;
 }
 
 .btn-reset {
+  padding: 20px;
+}
+
+.nav-btn {
   position: absolute;
   bottom: 0;
-  left: 120px;
-  padding: 20px;
-  margin: 16px;
+  left: 0;
+
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
 }

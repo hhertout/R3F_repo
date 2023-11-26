@@ -1,7 +1,7 @@
 'use client';
-import React, { StrictMode, Suspense, useEffect, useState } from 'react';
-import { Canvas, useFrame, Vector3 } from '@react-three/fiber';
-import { Html, OrbitControls, StatsGl } from '@react-three/drei';
+import React, { StrictMode, Suspense, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, StatsGl } from '@react-three/drei';
 import Terrain from '@components/Terrain';
 import Road from '@components/Road';
 import Car from '@components/Car';
@@ -11,13 +11,15 @@ import './playground.css';
 import ShootingStars from '@components/ShootingStars';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { easing } from 'maath';
+import OrganicPlane from '@components/OrganicPlane';
+import Loader from '@components/global/Loader';
+
+export type Mode = 'home' | 'view';
 
 const terrainDepth = 60;
-
-declare type Mode = 'home' | 'view';
-
 const Page = () => {
-  const [mode, setMode] = useState<Mode>('home');
+  const [mode, setMode] = useState<Mode>('view');
+  const [toggleEffect, setToggleEffect] = useState(false);
   return (
     <body>
       <div id="canvas-container">
@@ -28,27 +30,28 @@ const Page = () => {
         >
           <StatsGl />
           <StrictMode>
-            <Suspense
-              fallback={
-                <Html color={'white'} scale={10}>
-                  Loading
-                </Html>
-              }
-            >
+            <Suspense fallback={<Loader />}>
               <Scene mode={mode} setMode={setMode} />
-              {/*<Effects />*/}
+              {toggleEffect && <Effects />}
             </Suspense>
           </StrictMode>
 
-          {/*<OrbitControls />*/}
+          <OrbitControls />
         </Canvas>
 
-        <button onClick={() => setMode('view')} className={'btn'}>
-          Click me
-        </button>
-        <button onClick={() => setMode('home')} className={'btn-reset'}>
-          Reset
-        </button>
+        <div className={'nav-btn'}>
+          <button
+            onClick={() => setToggleEffect((toggleEffect) => !toggleEffect)}
+          >
+            PPE {toggleEffect ? '(on)' : '(off)'}
+          </button>
+          <button onClick={() => setMode('home')} className={'btn-reset'}>
+            Home
+          </button>
+          <button onClick={() => setMode('view')} className={'btn'}>
+            View 1
+          </button>
+        </div>
       </div>
     </body>
   );
@@ -59,7 +62,7 @@ type SceneProps = {
   setMode: React.Dispatch<React.SetStateAction<Mode>>;
 };
 
-function Scene({ mode, setMode }: SceneProps) {
+function Scene({ mode }: SceneProps) {
   useFrame((state, delta) => {
     state.viewport.width = 21;
     switch (mode) {
@@ -74,7 +77,6 @@ function Scene({ mode, setMode }: SceneProps) {
           0.5,
           delta
         );
-        window.dispatchEvent(new Event('resize'));
         break;
       }
       case 'view': {
@@ -104,6 +106,11 @@ function Scene({ mode, setMode }: SceneProps) {
           <CameraRig />
         </>
       ) : null}
+      {mode === 'view' ? (
+        <>
+          <OrganicPlane position={[0, -0.5, 18]} height={18} width={18} />
+        </>
+      ) : null}
     </>
   );
 }
@@ -128,7 +135,7 @@ function CameraRig() {
 function Effects() {
   return (
     <EffectComposer>
-      <Bloom luminanceThreshold={0.3} intensity={0.9} mipmapBlur />
+      <Bloom luminanceThreshold={0.2} intensity={0.5} mipmapBlur />
     </EffectComposer>
   );
 }
