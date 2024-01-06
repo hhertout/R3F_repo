@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Vector3 } from '@react-three/fiber';
+import * as THREE from 'three';
 
 type Props = {
   size: number;
@@ -8,8 +9,10 @@ type Props = {
   width: number;
 };
 
+const material = new THREE.MeshStandardMaterial({ color: 'black' });
+
 const Buildings = ({ z, size, maxHeight, width }: Props) => {
-  const buildings = useMemo(() => {
+  const elements = useMemo(() => {
     const buildingArray: Array<{ element: any }> = [];
     for (let i = 0; i < size; i++) {
       const randomHeight: number = Math.random() * maxHeight + 2;
@@ -21,16 +24,16 @@ const Buildings = ({ z, size, maxHeight, width }: Props) => {
       ];
       buildingArray.push({
         element: (
-          <mesh position={randomPosition} key={i} receiveShadow>
+          <mesh position={randomPosition} key={i} material={material}>
             <boxGeometry args={[1.4, randomHeight]} />
-            <meshStandardMaterial color={'black'} />
           </mesh>
         ),
       });
     }
-    return buildingArray;
+    return { buildings: buildingArray };
   }, [z, size, maxHeight, width]);
-  return <>{buildings.map((b: any) => b.element)}</>;
+
+  return <>{elements.buildings.map((b) => b.element)}</>;
 };
 
 export default Buildings;
